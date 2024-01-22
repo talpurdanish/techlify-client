@@ -1,0 +1,32 @@
+<form [formGroup]="changeRoleForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group">
+    <label for="roleId" class="control-label">Select Role to Change:</label>
+  </div>
+  <div class="input-group mb-3">
+    <select id="roleId" name="roleId" formControlName="roleId" class="form-select" [selectedIndex]="1"
+      [class.ng-invalid]="roleId?.invalid" [pTooltip]="roleId?.invalid?'Role is required':''" tooltipPosition="right"
+      tooltipStyleClass="p-tooltip-error">
+      <option *ngFor="let item of rolesList" value="{{ item.Name }}">
+        {{ item.Name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row" style="width: 100%">
+      <div class="col-9">
+        <div class="alert alert-danger" *ngIf="isSignUpFailed" style="width: 100% !important">
+          {{ errorMessage }}
+        </div>
+        <div class="alert alert-success" *ngIf="isSuccessful" style="width: 100% !important">
+          {{ errorMessage }}
+        </div>
+      </div>
+      <div class="col-2">
+        <button [disabled]="!changeRoleForm.valid" type="submit" class="btn btn-success">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

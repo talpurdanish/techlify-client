@@ -1,0 +1,113 @@
+<div id="page-width">
+  <!-- navigation -->
+  <nav class="navbar navbar-expand-xl fixed-top navbar-custom">
+    <div class="container">
+      <div class="navbar-brand">
+        <img src="assets/images/logo_light.png" alt="" class="nav-image" /> - My
+        Favorite Character
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarLo"
+        aria-controls="navbarLo"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarLo">
+        <ul class="navbar-nav ms-auto page-scroll">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+
+          <li class="nav-item" *ngIf="!isLoggedin">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggedin">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+
+          <li class="nav-item" *ngIf="isLoggedin && isAdmin">
+            <a class="nav-link" href="/Users">Users</a>
+          </li>
+
+          <li class="nav-item dropdown" *ngIf="isLoggedin && isAdmin">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Characters
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Characters">View</a></li>
+              <li>
+                <a class="dropdown-item" href="/AddCharacter">Add</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown" *ngIf="isLoggedin">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ currentUser.firstName }}
+            </a>
+            <ul class="dropdown-menu">
+              <li *ngIf="isAdmin">
+                <a class="dropdown-item" href="/admin">Dashboard</a>
+              </li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /navigation ends -->
+  <!-- Home Page -->
+  <div id="main" class="home">
+    <div id="page-section">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-profile
+  [sidebarVisible]="sidebarVisible"
+  (SideBarClosed)="sideBarClosed($event)"
+></app-profile>
+
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="form-modal">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-tasks"></i>
+          <h5 class="modal-title"></h5>
+          <button
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+            class="close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  </div> -->
+<!-- <div class="loaderbody" id="loaderbody">
+        <div class="loader"><img src="assets/Images/scanning.gif" /></div>
+      </div> -->
+
+<!-- /footer content -->

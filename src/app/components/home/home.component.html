@@ -1,0 +1,49 @@
+<section id="home">
+  <p-toast></p-toast>
+  <div class="container-fluid">
+    <!-- Extras -->
+    <div class="container">
+      <!-- Basic elements -->
+      <div class="section-heading">
+        <h2>Vote your favorite character</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div
+              class="col-3 col-ms-3 col-sm-3"
+              *ngFor="let item of listCharacters"
+            >
+              <div
+                class="character-card shadow-sm"
+                (click)="voteCharacter(item.id)"
+              >
+                <img
+                  [src]="
+                    item.hasImage
+                      ? item.Picture
+                      : '../../../../assets/images/profile.png'
+                  "
+                  class="character-img img-fluid"
+                />
+                <div class="character-title">
+                  <div class="text-center text-black">
+                    {{ item.Name }}
+                    <div class="character-votes">{{ item.Votes }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /row-->
+        </div>
+        <!-- /col-->
+      </div>
+      <!--/row-->
+
+      <!-- /row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!-- /container-fluid -->
+</section>

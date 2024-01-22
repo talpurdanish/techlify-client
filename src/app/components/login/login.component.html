@@ -1,0 +1,56 @@
+<section id="login" class="container-fluid">
+  <div class="section-heading">
+    <h2>Login</h2>
+  </div>
+  <div *ngIf="isLoading" class="loaderbody" id="loaderbody">
+    <div class="loader">
+      <img src="../../../assets/images/scanning.gif" />
+    </div>
+  </div>
+  <div class="shadow-lg bubble">
+    <form
+      [formGroup]="loginForm"
+      name="form"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        id="username"
+        formControlName="username"
+        name="username"
+        required
+        placeholder="Enter your Username"
+        [class.ng-invalid]="isLoading && username.errors"
+      />
+
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        formControlName="password"
+        required
+        name="password"
+        placeholder="Password"
+        [class.ng-invalid]="isLoading && password.errors"
+      />
+
+      <div
+        class="text-center text-danger"
+        *ngIf="isLoginFailed || username.errors || password.errors"
+      >
+        {{ errorMessage }}
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" id="btnLogin">
+          <i class="fa fa-login"></i> Login
+        </button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</section>
